@@ -12,6 +12,7 @@
                 align-content: space-around;
                 height:10vmin;
                 border: 20px;
+                
             }
             .items{
                 flex-grow: 2;
@@ -19,23 +20,41 @@
                 flex-basis: 200px;
                 order: 2;
                 align-self: flex-start;
-                background-color: lightcoral;
+                
                 padding: 30px;
                 margin:200px;
-                color:white;
+                color:black;
                 font-size:2em;
                 text-align:center;
+            }
+            .lion{
+                background-color: blue;
+            }
+            .tiger{
+                background-color: brown;
+
+            }
+            .elephant{
+                background-color: chocolate;
+            }
+            .leopard{
+                background-color: darkgreen;
+
+            }
+            .eagle{
+                background-color: indigo;
             }
             
         </style>
     </head>
     <body>
-        <div class="container"></div>
-        <div class="items">lion</div>
-        <div class="items">tiger</div>
-        <div class="items">elephant</div>
-        <div class="items">leopard</div>
-        <div class="items">eagle</div>
+        <div class="container">
+        <div class="items lion">lion</div>
+        <div class="items tiger">tiger</div>
+        <div class="items elephant">elephant</div>
+        <div class="items leopard">leopard</div>
+        <div class="items eagle">eagle</div>
+        </div>
     </body>
     
 </html>
