@@ -1,0 +1,74 @@
+1.Form.html
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<body>
+    <h2>Login Form</h2>
+    
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" ><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+
+2.table.html
+
+<!doctype html>
+<html>
+    <head>
+        <title>table example</title>
+        <style>
+            table,th,td{
+                border:1px solid black;
+            }
+        </style>
+        <body>
+            <table>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Product 1</td>
+                    <td>12</td>
+                    <td>220</td>
+                    
+                </tr>
+                <tr>
+                    <td>Product 2</td>
+                    <td>10</td>
+                    <td>250</td>
+                    
+                </tr>
+                <tr>
+                    <td>Product 3</td>
+                    <td>30</td>
+                    <td>350</td>
+                   
+                </tr>
+                <tr>
+                    <td>Product 4</td>
+                    <td>50</td>
+                    <td>550</td>
+                   
+                </tr>
+                <td colspan="2">Total Price</td>
+                <td>1370</td>
+
+            </table>
+          
+        </body>
+    </head>
+</html>
+
