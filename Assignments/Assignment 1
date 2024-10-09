@@ -1,0 +1,38 @@
+1. What is HTML?
+HTML (HyperText Markup Language) is the standard markup language used to create web pages. It provides the structure of a webpage by using elements such as headings, paragraphs, links, images, and forms. 
+
+2. Are HTML tags and elements the same thing?
+No, HTML tags and elements are related but not the same:
+
+HTML Tags: These are the building blocks that define the start and end of an HTML element. They are enclosed in angle brackets (< >). For example, <p> and </p> are tags for a paragraph.
+
+HTML Elements: These include both the opening tag, the content between the tags (if any), and the closing tag. For example, <p>This is a paragraph.</p> is an HTML element.
+
+3. What are tags and attributes in HTML?
+Tags: Tags are keywords enclosed in angle brackets, used to define elements in HTML. They come in pairs, with an opening tag (e.g., <h1>) and a closing tag (e.g., </h1>), though some tags are self-closing (void elements).
+
+Attributes: Attributes provide additional information about HTML elements. They are specified within the opening tag.
+
+4. What are void elements in HTML?
+Void elements (also known as self-closing elements) are HTML elements that do not have closing tags and cannot contain any content. Examples include:
+
+<img> (image element)
+<br> (line break)
+<hr> (horizontal rule)
+<input> (input field)
+
+6. Difference between HTML and XHTML (Point-wise)
+HTML: Allows flexible syntax (e.g., closing tags can be omitted for some elements).
+XHTML: Follows strict XML rules (all tags must be properly closed).
+Tag Case Sensitivity:
+
+HTML: Tags are not case-sensitive (e.g., both <h1> and <H1> are valid).
+XHTML: Tags must be written in lowercase (e.g., <h1> is valid, but <H1> is not).
+Document Structure:
+
+HTML: More lenient in document structure and does not require well-formed documents.
+XHTML: Requires well-formed documents and a proper structure, following XML guidelines.
+Error Handling:
+
+HTML: Browsers are more forgiving of mistakes and can still render pages with errors.
+XHTML: Browsers enforce strict error handling, and even minor mistakes may break page rendering.
