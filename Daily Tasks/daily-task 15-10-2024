@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Background Color Example</title>
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css">
+    <style>
+        .callout.callout:hover{
+            background-color: yellow;
+            color: black;
+        }
+        .button.button:hover{
+            background-color: brown;
+            color: black;
+        }
+    </style>
+ 
+</head>
+<body>
+    <div class="container">
+        <h1>Foundation Background Color and Button Example</h1>
+
+       
+        <div class="callout primary">
+            <p>This is a primary color.</p>
+        </div>
+
+        <div class="callout secondary">
+            <p>This is a secondary  color.</p>
+        </div>
+
+        <div class="callout success">
+            <p>This is a success  color.</p>
+        </div>
+
+        <div class="callout alert">
+            <p>This is an alert  color.</p>
+        </div>
+
+        <div class="custom-background">
+            <p style=" background-color: pink;">This section uses a custom background color.</p>
+        </div>
+        <h1>Foundation Buttons Example</h1>
+       
+    
+        <button class="button">Primary Button</button>
+        <button class="button secondary">Secondary Button</button>
+        <button class="button success">Success Button</button>
+        <button class="button alert">Alert Button</button>
+        <button class="button hollow">hollow Button</button>
+        <button class="button disabled">disabled Button</button>
+        <button class="button expanded">expanded Button</button>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation(); 
+    </script>
+</body>
+</html>
