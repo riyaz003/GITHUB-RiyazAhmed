@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Background Color Example</title>
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css">
+   
+</head>
+<body>
+    <div class="card">
+        <div class="card-section">
+          <img src="https://via.placeholder.com/300x200" alt="Placeholder Image" class="card-img">
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <h4 class="card-title">Card Title</h4>
+          <p class="card-text">This is a short description or detail about the content inside the card.</p>
+        </div>
+        <div class="card-divider"></div>
+        <div class="card-section">
+          <a href="#" class="card-btn">Read More</a>
+        </div>
+      </div>
+      
+       
+      
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"></script>
+    <script>
+        $(document).foundation(); 
+    </script>
+</body>
+</html>
