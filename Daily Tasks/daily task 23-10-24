@@ -1,0 +1,7 @@
+<html>
+    <head>
+        <script>
+            document.write("hello welome to js");
+        </script>
+    </head>
+</html>
