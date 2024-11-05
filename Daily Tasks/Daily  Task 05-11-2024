@@ -1,0 +1,48 @@
+1.Arithmatic OPperators Example:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arithmetic Operator Example</title>
+</head>
+<body>
+    <script>
+        var x = 20;
+        var y = 3;
+        document.write("x + y = " + (x + y) + "<br>");
+        document.write("x - y = " + (x - y) + "<br>");
+        document.write("x * y = " + (x * y) + "<br>");
+        document.write("x / y = " + (x / y) + "<br>");
+        document.write("x % y = " + (x % y) + "<br>");
+    </script>
+</body>
+</html>
+
+
+2.Assignment Operators Example:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment Operator Example</title>
+</head>
+<body>
+    <script>
+        var x = 10;
+        document.write("Initial value of x: " + x + "<br>");
+
+        x += 5;  
+        document.write("After x += 5, x = " + x + "<br>");
+
+        x -= 3;  
+        document.write("After x -= 3, x = " + x + "<br>");
+
+        x *= 4;  
+        document.write("After x *= 4, x = " + x + "<br>");
+
+        x /= 2; 
+        document.write("After x /= 2, x = " + x + "<br>");
+
+        x %= 3; 
+        document.write("After x %= 3, x = " + x + "<br>");
+    </script>
+</body>
+</html>
