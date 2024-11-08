@@ -1,0 +1,128 @@
+1.Cocatination of Strings
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concatenate Strings</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        label, button {
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        input {
+            padding: 5px;
+            width: 100%;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function concatenateStrings() {
+            
+            const str1 = "Hello, ";
+            const str2 = "World!";
+
+         
+            const result = str1 + str2;
+
+            
+            document.write("<h2>Concatenated Result</h2>");
+            document.write("<p style='font-size: 1.2rem; color: #4CAF50;'>" + result + "</p>");
+        }
+    </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>String Concatenation</h2>
+        <p>This example uses predefined strings.</p>
+        <button onclick="concatenateStrings()">Concatenate</button>
+    </div>
+
+</body>
+</html>
+
+
+2.Airthmatic operations
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic Operator Example</title>
+    <style>
+               body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            color: #4caf56;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Arithmetic Operations</h1>
+        <script>
+            var x = 20;
+            var y = 3;
+            document.write("<p>x + y = " + (x + y) + "</p>");
+            document.write("<p>x - y = " + (x - y) + "</p>");
+            document.write("<p>x * y = " + (x * y) + "</p>");
+            document.write("<p>x / y = " + (x / y).toFixed(2) + "</p>");
+            document.write("<p>x % y = " + (x % y) + "</p>");
+        </script>
+    </div>
+</body>
+</html>
