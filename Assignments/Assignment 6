@@ -1,0 +1,67 @@
+1.write a program to find positive number,negative number and zero:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            width: 300px;
+        }
+        .container h2 {
+            color: #333;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .message {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: color 0.4s, transform 0.4s;
+        }
+        /* Specific color for different messages */
+        .positive { color: #28a745; }
+        .negative { color: #dc3545; }
+        .zero { color: #ffc107; }
+        .error { color: #6c757d; }
+        /* Hover effect */
+        .message:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Number Checker</h2>
+    <script>
+        var x = prompt("Enter a number:");
+        if (x > 0) {
+            document.write("<div class='message positive'>It Is A Positive Number!</div>");
+        } else if (x < 0) {
+            document.write("<div class='message negative'>It Is A Negative Number!</div>");
+        } else if (x == 0) {
+            document.write("<div class='message zero'>It's A Zero!</div>");
+        } else {
+            document.write("<div class='message error'>Please Enter A Valid Number :)</div>");
+        }
+    </script>
+</div>
+
+</body>
+</html>
