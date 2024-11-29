@@ -1,0 +1,75 @@
+Reverse And Sort Array:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse and Sort Array</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        #result {
+            margin-top: 20px;
+        }
+        .output {
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #e7f3fe;
+            border: 1px solid #b6d4fe;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Reverse and Sort Array</h1>
+    <p>Enter a comma-separated list of characters:</p>
+    <input type="text" id="charInput" placeholder="e.g., a,b,c,x,y,z" />
+    <button onclick="handleReverseAndSort()">Process</button>
+
+    <div id="result"></div>
+
+    <script>
+     
+        function reverseAndSortArray(charArray) {
+            
+            let reversedArray = [...charArray].reverse();
+            
+            let sortedArray = [...reversedArray].sort();
+            return { reversedArray, sortedArray };
+        }
+
+        
+        function handleReverseAndSort() {
+            const input = document.getElementById("charInput").value;
+            if (input.trim() === "") {
+                document.getElementById("result").innerHTML = "<p>Please enter some characters.</p>";
+                return;
+            }
+
+            
+            const charArray = input.split(",").map((char) => char.trim());
+            const { reversedArray, sortedArray } = reverseAndSortArray(charArray);
+
+            document.getElementById("result").innerHTML = `
+                <div class="output"><strong>Reversed Array:</strong> ${reversedArray.join(", ")}</div>
+                <div class="output"><strong>Sorted Array:</strong> ${sortedArray.join(", ")}</div>
+            `;
+        }
+    </script>
+</body>
+</html>
