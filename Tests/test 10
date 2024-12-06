@@ -1,0 +1,58 @@
+home.html: 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Data Example</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Fetch API with Dummy JSON</h1>
+  <button onclick="fetchData()">Fetch Data</button>
+  <div id="data-container" class="data-container"></div>
+
+  <script src="script1.js"></script>
+</body>
+</html>
+
+
+script1.js:
+
+async function fetchData() {
+    const url = 'https://dummyjson.com/products'; 
+    const dataContainer = document.getElementById('data-container');
+  
+    try {
+    
+      const response = await fetch(url);
+  
+     
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status} ${response.statusText}`);
+      }
+  
+      const data = await response.json();
+      const products = data.products;
+  
+      dataContainer.innerHTML = products
+        .slice(0, 10) 
+        .map(
+          product => `
+            <div>
+              <h3>${product.title}</h3>
+              <p>Price: $${product.price}</p>
+              <p>${product.description}</p>
+              <img src="${product.thumbnail}" alt="${product.title}" style="width: 150px; border-radius: 5px;" />
+            </div>
+          `
+        )
+        .join('');
+    } catch (error) {
+      // Handle errors
+      console.error(error);
+      dataContainer.innerHTML = `<p style="color: red;">Failed to fetch data: ${error.message}</p>`;
+    }
+  }
+  
