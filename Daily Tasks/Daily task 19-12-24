@@ -1,0 +1,48 @@
+<html>
+  <!-- Include React and ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Include Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <div id="root"></div>
+  <script type="text/babel">
+    class Car extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          Name: "Raj",
+          Lname: "ssss",
+          Email: "bc@gmail.com",
+          BirthYear: 1998
+        };
+      }
+
+      Name = () => {
+        this.setState({ Name: "riyaz" });
+      };
+
+      Lname = () => {
+        this.setState({ Lname: "Ahmed" }); // Fixed 'setstate' to 'setState'
+      };
+
+      render() {
+        return (
+          <div>
+            <h1>
+              I am {this.state.Name} {this.state.Lname}
+            </h1>
+            <p>
+              My Email is {this.state.Email} and my birth year is {this.state.BirthYear}
+            </p>
+            <button onClick={this.Name}>Change Name</button>
+            <button onClick={this.Lname}>Change Last Name</button>
+          </div>
+        );
+      }
+    }
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<Car />);
+  </script>
+</html>
