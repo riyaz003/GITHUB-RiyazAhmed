@@ -1,0 +1,213 @@
+<html>
+  <!-- Include React and ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Include Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <div id="root"></div>
+
+  <style>
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(45deg, #ff7f50, #ff6347);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      animation: backgroundAnimation 6s ease infinite;
+    }
+
+   
+    @keyframes backgroundAnimation {
+      0% {
+        background: linear-gradient(45deg, #ff7f50, #ff6347);
+      }
+      50% {
+        background: linear-gradient(45deg, #f0e68c, #ff6347);
+      }
+      100% {
+        background: linear-gradient(45deg, #ff7f50, #ff6347);
+      }
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+   
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 2px solid #4CAF50;
+      border-radius: 15px;
+      z-index: -1;
+      transform: scale(0);
+      animation: borderAnimation 1.5s ease-out forwards;
+    }
+
+    @keyframes borderAnimation {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .container:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      transform: translateY(-5px);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      animation: textGlow 1.5s ease-in-out infinite alternate;
+    }
+
+  
+    @keyframes textGlow {
+      0% {
+        text-shadow: 0 0 10px rgba(255, 99, 71, 0.8), 0 0 20px rgba(255, 99, 71, 0.6);
+      }
+      100% {
+        text-shadow: 0 0 20px rgba(255, 99, 71, 1), 0 0 30px rgba(255, 99, 71, 0.8);
+      }
+    }
+
+    p {
+      color: #555;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+  
+    button {
+      background-color: #4CAF50;
+      color: white;
+      font-size: 1.2rem;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background-color: #45a049;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 300%;
+      height: 300%;
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translate(-50%, -50%) rotate(45deg);
+      animation: pulseEffect 1.2s infinite;
+    }
+
+   
+    @keyframes pulseEffect {
+      0% {
+        width: 300%;
+        height: 300%;
+      }
+      50% {
+        width: 0%;
+        height: 0%;
+      }
+      100% {
+        width: 300%;
+        height: 300%;
+      }
+    }
+
+    .state-display {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    .state-display b {
+      color: #ff6347;
+    }
+  </style>
+
+  <script type="text/babel">
+    class Car extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          Name: "Nayaz",
+          Lname: "Ahmed",
+          Email: "abc@gmail.com",
+          BirthYear: 1999
+        };
+      }
+
+    
+      changeAllProperties = () => {
+        this.setState({
+          Name: "Riyaz",
+          Lname: "Ahmed",
+          BirthYear: 2002 
+        });
+      };
+
+      render() {
+        return (
+          <div className="container">
+            <h1>
+              I am {this.state.Name} {this.state.Lname}
+            </h1>
+            <p>
+              My Email is {this.state.Email} and my birth year is {this.state.BirthYear}
+            </p>
+            <button onClick={this.changeAllProperties}>Change Name, Last Name, and Birth Year</button>
+            <div className="state-display">
+              <p><b>Name:</b> {this.state.Name}</p>
+              <p><b>Last Name:</b> {this.state.Lname}</p>
+              <p><b>Birth Year:</b> {this.state.BirthYear}</p>
+            </div>
+          </div>
+        );
+      }
+    }
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(<Car />);
+  </script>
+</html>
