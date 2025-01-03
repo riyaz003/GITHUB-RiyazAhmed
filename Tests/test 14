@@ -1,0 +1,183 @@
+1.ODD OR EVEN
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odd OR Even Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            color: #4caf56;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 5px 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            margin-top: 10px;
+            border: none;
+            background-color: #4caf56;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ODD OR EVEN</h1>
+        <input type="number" id="numberInput" placeholder="Enter a number" />
+        <button onclick="checkOddEven()">Check</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Function to check if a number is even or odd
+        function checkOddEven() {
+            const number = document.getElementById('numberInput').value;
+            const resultElement = document.getElementById('result');
+            
+            if (number === '') {
+                resultElement.textContent = 'Please enter a number!';
+                return;
+            }
+            
+            if (number % 2 === 0) {
+                resultElement.textContent = `${number} is an even number.`;
+            } else {
+                resultElement.textContent = `${number} is an odd number.`;
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+2. Factorial
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            color: #4caf56;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #333;
+            margin: 5px 0;
+        }
+        input[type="number"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            margin-top: 10px;
+            border: none;
+            background-color: #4caf56;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Factorial Calculator</h1>
+        <input type="number" id="numberInput" placeholder="Enter a number" />
+        <button onclick="calculateFactorial()">Calculate Factorial</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // Function to calculate the factorial of a number
+        function factorial(number) {
+            if (number < 0) {
+                return "Factorial is not defined for negative numbers.";
+            } else if (number === 0 || number === 1) {
+                return 1;
+            } else {
+                let result = 1;
+                for (let i = 2; i <= number; i++) {
+                    result *= i;
+                }
+                return result;
+            }
+        }
+
+        // Function to calculate and display the factorial
+        function calculateFactorial() {
+            const number = document.getElementById('numberInput').value;
+            const resultElement = document.getElementById('result');
+            
+            if (number === '') {
+                resultElement.textContent = 'Please enter a number!';
+                return;
+            }
+
+            const fact = factorial(Number(number));
+            resultElement.textContent = `The factorial of ${number} is: ${fact}`;
+        }
+    </script>
+</body>
+</html>
+
