@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern To-Do List</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --background: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #0f172a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+
+        .app {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            background: var(--card-bg);
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h1:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto;
+            border-radius: 2px;
+        }
+
+        form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--card-bg);
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .task-item {
+            background: var(--card-bg);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: slideIn 0.3s ease forwards;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .task-item:hover {
+            transform: translateX(4px);
+        }
+
+        .task-text {
+            font-size: 1.1rem;
+            color: var(--text);
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .btn-danger:hover {
+            background: var(--danger-hover);
+            transform: scale(1.05);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
+            opacity: 0.8;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .app {
+                padding: 1rem;
+            }
+            
+            form {
+                flex-direction: column;
+            }
+            
+            .input-field {
+                width: 100%;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { createContext, useState, useContext } = React;
+
+        const TaskContext = createContext();
+
+        const TaskProvider = ({ children }) => {
+            const [tasks, setTasks] = useState([]);
+
+            const addTask = (text) => {
+                if (text.trim()) {
+                    setTasks([...tasks, { 
+                        id: Date.now(), 
+                        text: text.trim(),
+                        completed: false 
+                    }]);
+                }
+            };
+
+            const removeTask = (id) => {
+                setTasks(tasks.filter(task => task.id !== id));
+            };
+
+            return (
+                <TaskContext.Provider value={{ tasks, addTask, removeTask }}>
+                    {children}
+                </TaskContext.Provider>
+            );
+        };
+
+        const useTasks = () => useContext(TaskContext);
+
+        const AddTask = () => {
+            const [input, setInput] = useState('');
+            const { addTask } = useTasks();
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                addTask(input);
+                setInput('');
+            };
+
+            return (
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        className="input-field"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        placeholder="✍️ Enter a new task..."
+                    />
+                    <button type="submit" className="btn btn-primary">
+                        <span>Add Task</span>
+                    </button>
+                </form>
+            );
+        };
+
+        const Task = ({ task }) => {
+            const { removeTask } = useTasks();
+
+            return (
+                <li className="task-item">
+                    <span className="task-text">{task.text}</span>
+                    <button 
+                        className="btn btn-danger"
+                        onClick={() => removeTask(task.id)}
+                    >
+                        🗑️ Delete
+                    </button>
+                </li>
+            );
+        };
+
+        const TaskList = () => {
+            const { tasks } = useTasks();
+
+            return (
+                <ul className="task-list">
+                    {tasks.length === 0 ? (
+                        <div className="empty-state">
+                            📭 No tasks yet! Add your first task above.
+                        </div>
+                    ) : (
+                        tasks.map(task => <Task key={task.id} task={task} />)
+                    )}
+                </ul>
+            );
+        };
+
+        const App = () => {
+            return (
+                <TaskProvider>
+                    <div className="app">
+                        <div className="container">
+                            <h1>Todo List</h1>
+                            <AddTask />
+                            <TaskList />
+                        </div>
+                    </div>
+                </TaskProvider>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
