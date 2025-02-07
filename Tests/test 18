@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System with Redux</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.1.2/redux.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        #logoutSection {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login System</h2>
+        <div id="loginForm">
+            <input type="text" id="username" placeholder="Enter Username" required>
+            <input type="password" id="password" placeholder="Enter Password" required>
+            <button onclick="login()">Login</button>
+        </div>
+        <div id="logoutSection">
+            <p>Welcome, <span id="userDisplay"></span>!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        const LOGIN = "LOGIN";
+        const LOGOUT = "LOGOUT";
+
+        const loginAction = (username) => ({ type: LOGIN, payload: username });
+        const logoutAction = () => ({ type: LOGOUT });
+
+        const authReducer = (state = { isAuthenticated: false, user: "" }, action) => {
+            switch (action.type) {
+                case LOGIN:
+                    return { isAuthenticated: true, user: action.payload };
+                case LOGOUT:
+                    return { isAuthenticated: false, user: "" };
+                default:
+                    return state;
+            }
+        };
+
+        const store = Redux.createStore(authReducer);
+
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username && password) {
+                store.dispatch(loginAction(username));
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
+            }
+        }
+
+        function logout() {
+            store.dispatch(logoutAction());
+        }
+
+        function updateUI() {
+            const state = store.getState();
+            if (state.isAuthenticated) {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("logoutSection").style.display = "block";
+                document.getElementById("userDisplay").innerText = state.user;
+            } else {
+                document.getElementById("loginForm").style.display = "block";
+                document.getElementById("logoutSection").style.display = "none";
+            }
+        }
+
+        store.subscribe(updateUI);
+        
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                login();
+            }
+        });
+    </script>
+</body>
+</html>
