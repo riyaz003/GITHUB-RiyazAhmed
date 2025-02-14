@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <title>AngularJS Welcome App</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      transform: translateY(0);
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .container:hover {
+      transform: translateY(-5px);
+    }
+    h1 {
+      color: #2d3748;
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      position: relative;
+      animation: fadeIn 1s ease-in;
+    }
+    .input-group {
+      margin: 1.5rem 0;
+      position: relative;
+    }
+    input {
+      width: 100%;
+      padding: 12px 20px;
+      border: 2px solid #e2e8f0;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: #f8fafc;
+    }
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: white;
+    }
+    .message-output {
+      font-size: 1.1rem;
+      color: #4a5568;
+      padding: 15px;
+      background: #f7fafc;
+      border-radius: 8px;
+      margin-top: 1rem;
+      font-family: 'Courier New', Courier, monospace;
+      border-left: 4px solid #667eea;
+      animation: slideIn 0.5s ease-out;
+    }
+    .angular-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #dd0031;
+      color: white;
+      padding: 6px 14px;
+      font-size: 0.85rem;
+      border-radius: 10px;
+      transform: rotate(0);
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .welcome-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container" ng-app="myApp" ng-controller="myCtrl">
+  <div class="angular-badge">AngularJS</div>
+  <div class="welcome-icon">👋</div>
+  <h1>{{ message }}</h1>
+  <div class="input-group">
+    <input type="text" ng-model="predefinedMessage" placeholder="Type your message here...">
+  </div>
+  <div class="message-output">
+    {{ predefinedMessage || 'Start typing to see your message appear here!' }}
+  </div>
+</div>
+
+<script>
+  var app = angular.module('myApp', []);
+  app.controller('myCtrl', function($scope) {
+    $scope.message = "Welcome to AngularJS!";
+    $scope.predefinedMessage = "Hello, AngularJS Learner!";
+  });
+</script>
+
+</body>
+</html>
