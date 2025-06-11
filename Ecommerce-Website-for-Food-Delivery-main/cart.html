@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed's Food Delivery - Cart</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bb674ddf93.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles for selected payment option */
+        .payment-option.selected {
+            background-color: #28a745;
+            color: white;
+        }
+        #orderButton {
+        margin-top: 20px;  /* Adjust this value to control the distance */
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h2>Your Cart</h2>
+
+        <!-- Cart Content Will Be Inserted Here -->
+        <div id="cartContent"></div>
+
+        <!-- If the cart is empty, show this message -->
+        <div id="emptyCartMessage" style="display: none;">
+            <p class="text-center text-muted">Your cart is empty</p>
+        </div>
+
+        <!-- Subtotal Section -->
+        <div id="subtotalSection" style="display: none;">
+            <p id="subtotal"></p>
+            <div class="mt-3">
+                <h4>Select Payment Method</h4>
+                <button id="phonepe" class="btn btn-outline-success payment-option" onclick="selectPayment('phonepe')">PhonePe</button>
+                <button id="gpay" class="btn btn-outline-danger payment-option" onclick="selectPayment('gpay')">GPay</button>
+                <button id="paytm" class="btn btn-outline-primary payment-option" onclick="selectPayment('paytm')">Paytm</button>
+                <button id="bhim" class="btn btn-outline-dark payment-option" onclick="selectPayment('bhim')">BHIM</button>
+            </div>
+            
+            <button id="orderButton" class="btn btn-success" disabled>Proceed with Order</button>
+        </div>
+
+        <!-- Success Message After Order is Placed -->
+        <div id="orderSuccessMessage" style="display: none;">
+            <div class="alert alert-success" role="alert">
+                Your order has been placed successfully. Thank you for ordering with Ahmed's Food Delivery!
+            </div>
+           
+        </div>
+
+        <!-- Go Back to Home Link (shown when cart is empty) -->
+        <a id="backToHomeLink" href="index.html" class="btn btn-primary" style="display: none;">Back to Home</a>
+    </div>
+
+    <script>
+        // Initialize the cart from localStorage or empty array
+        let cart = JSON.parse(localStorage.getItem("CART")) || [];
+    
+        // Elements for rendering
+        const cartContent = document.getElementById("cartContent");
+        const emptyCartMessage = document.getElementById("emptyCartMessage");
+        const orderButton = document.getElementById("orderButton");
+        const subtotalSection = document.getElementById("subtotalSection");
+        const backToHomeLink = document.getElementById("backToHomeLink");
+        const subtotalEl = document.getElementById("subtotal");
+        const orderSuccessMessage = document.getElementById("orderSuccessMessage");
+    
+        // Render Cart Items
+        // Render Cart Items
+function renderCartItems() {
+    cartContent.innerHTML = "";
+
+    // Check if the order success message is visible
+    if (orderSuccessMessage.style.display === "block") {
+        // If success message is shown, hide all other elements
+        emptyCartMessage.style.display = "none";
+        cartContent.style.display = "none";
+        subtotalSection.style.display = "none";
+        backToHomeLink.style.display = "inline";
+        return; // Exit the function to avoid showing empty cart message
+    }
+
+    if (cart.length === 0) {
+        emptyCartMessage.style.display = "block";
+        cartContent.style.display = "none";
+        subtotalSection.style.display = "none";
+        backToHomeLink.style.display = "inline";
+    } else {
+        emptyCartMessage.style.display = "none";
+        cartContent.style.display = "block";
+        subtotalSection.style.display = "block";
+        backToHomeLink.style.display = "none";
+
+        cart.forEach(item => {
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("cart-item");
+            itemDiv.innerHTML = `
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <strong>${item.name}</strong> - ${item.qty} x ₹${item.price}
+                    </div>
+                    <div>
+                        Total: ₹${(item.price * item.qty).toFixed(2)}
+                    </div>
+                </div>
+            `;
+            cartContent.appendChild(itemDiv);
+        });
+    }
+    renderSubtotal();
+}
+
+        // Render Subtotal
+        function renderSubtotal() {
+            let totalPrice = 0;
+            let totalItems = 0;
+            cart.forEach(item => {
+                totalPrice += item.price * item.qty;
+                totalItems += item.qty;
+            });
+            subtotalEl.innerHTML = `Subtotal (${totalItems} items): ₹${totalPrice.toFixed(2)}`;
+            orderButton.disabled = totalItems === 0;
+        }
+    
+        // Handle Order Button Click
+        orderButton.addEventListener("click", function () {
+            // Simulate order placed by clearing the cart
+            cart = [];
+            localStorage.removeItem("CART");
+    
+            // Update cart display and show success message
+            renderCartItems();
+    
+            // Show order success message
+            orderSuccessMessage.style.display = "block";
+            subtotalSection.style.display = "none";
+            cartContent.style.display = "none";
+            emptyCartMessage.style.display = "none"; // Hide empty cart message after success
+            backToHomeLink.style.display = "inline"; // Show "Back to Home" link
+        });
+    
+        // Initial render when the page loads
+        renderCartItems();
+        // Add this function to handle payment method selection
+function selectPayment(paymentMethod) {
+    // Remove the 'selected' class from all payment options
+    const paymentButtons = document.querySelectorAll('.payment-option');
+    paymentButtons.forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Add the 'selected' class to the clicked payment option
+    const selectedButton = document.getElementById(paymentMethod);
+    selectedButton.classList.add('selected');
+
+    // Enable the "Proceed with Order" button
+    document.getElementById("orderButton").disabled = false;
+}
+
+// Initially disable the "Proceed with Order" button
+document.getElementById("orderButton").disabled = true;
+
+// Handle Order Button Click
+orderButton.addEventListener("click", function () {
+    // Ensure a payment method is selected before proceeding
+    const selectedPaymentMethod = document.querySelector('.payment-option.selected');
+    if (!selectedPaymentMethod) {
+        alert('Please select a payment method before proceeding!');
+        return;
+    }
+
+    // Simulate order placed by clearing the cart
+    cart = [];
+    localStorage.removeItem("CART");
+    renderCartItems();
+
+    // Show order success message
+    orderSuccessMessage.style.display = "block";
+    subtotalSection.style.display = "none";
+    cartContent.style.display = "none";
+});
+
+    </script>
+    
+</body>
+
+</html>
